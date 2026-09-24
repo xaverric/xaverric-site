@@ -1,0 +1,22 @@
+name = "xaverric-site"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+workers_dev = false
+preview_urls = false
+routes = [
+  { pattern = "xaverric.cz", custom_domain = true },
+  { pattern = "www.xaverric.cz", custom_domain = true },
+]
+
+[assets]
+directory = "public"
+binding = "ASSETS"
+run_worker_first = true
+not_found_handling = "404-page"
+html_handling = "auto-trailing-slash"
+
+[observability]
+enabled = true
+
+[dev]
+upstream_protocol = "https"

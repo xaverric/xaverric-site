@@ -1,0 +1,23 @@
+[
+  {
+    "date": "2026-09-24",
+    "macrostructure": "Marquee Hero",
+    "theme": "custom",
+    "theme_axes": "light / roman-serif / warm",
+    "vibe": "warm paper, hand-set type, one vermilion signal",
+    "genre": "editorial",
+    "nav": "N9 Edge-aligned minimal",
+    "footer": "Ft4 Dense colophon",
+    "enrichment": "none",
+    "palette": {
+      "paper": "oklch(95.2% 0.014 78)",
+      "ink": "oklch(21% 0.016 55)",
+      "accent": "oklch(58% 0.205 34)",
+      "paperDark": "oklch(17.5% 0.012 55)",
+      "inkDark": "oklch(93% 0.014 80)",
+      "accentDark": "oklch(68% 0.18 36)"
+    },
+    "fonts": { "display": "Fraunces 290 (SOFT 100)", "body": "Fraunces 380 (text optical size)", "mono": "JetBrains Mono" },
+    "brief": "xaverric.cz - personal site of Daniel Jílek with the leaderborder showcase, live GitHub and leaderborder numbers, connect band"
+  }
+]
