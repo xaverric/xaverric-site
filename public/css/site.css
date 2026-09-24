@@ -13,7 +13,8 @@ body {
 body {
   min-height: 100svh;
   display: grid;
-  place-items: center start;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
   padding: var(--space-gutter);
   background: var(--color-paper);
   color: var(--color-ink);
@@ -42,7 +43,7 @@ body {
 .links {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-sm) var(--space-lg);
+  gap: 0 var(--space-lg);
   animation: rise var(--dur-slow) var(--ease-out) 120ms both;
 }
 

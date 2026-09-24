@@ -47,5 +47,4 @@ Without them the deploy job succeeds with a "Deploy skipped" notice.
 
 ## Optional
 
-- `GITHUB_TOKEN` Worker secret: `/api/live` calls the GitHub API unauthenticated, which is rate limited per IP and Cloudflare egress IPs are shared. The last good value is served when GitHub refuses, but a fine-grained token with no permissions raises the limit: `npx wrangler secret put GITHUB_TOKEN`.
 - HSTS is sent as `max-age=31536000` without `includeSubDomains`, because on the apex it would force HTTPS on every `*.xaverric.cz` host. Add it (and `preload`) in `src/http.js` and `public/_headers` once every subdomain serves HTTPS.
