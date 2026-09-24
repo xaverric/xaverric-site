@@ -1,10 +1,7 @@
 import { env } from "cloudflare:workers";
-import { afterEach, describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 import { CONTENT_SECURITY_POLICY, SECURITY_HEADERS, STRICT_TRANSPORT_SECURITY } from "../src/http.js";
-import { call, mockUpstream } from "./helpers.js";
-import { vi } from "vitest";
-
-afterEach(() => vi.restoreAllMocks());
+import { call } from "./helpers.js";
 
 const parseStaticHeaders = (text) =>
   Object.fromEntries(
@@ -24,9 +21,8 @@ describe("security headers", () => {
     expect(response.headers.get("strict-transport-security")).toBe(STRICT_TRANSPORT_SECURITY);
   });
 
-  it("sets them on API responses and not-found assets", async () => {
-    mockUpstream();
-    for (const path of ["/api/live", "/api/nope", "/missing-page"]) {
+  it("sets them on not-found pages and redirects", async () => {
+    for (const path of ["/missing-page", "/api/live"]) {
       const response = await call(path);
       expect(response.headers.get("content-security-policy")).toBe(CONTENT_SECURITY_POLICY);
       expect(response.headers.get("x-content-type-options")).toBe("nosniff");

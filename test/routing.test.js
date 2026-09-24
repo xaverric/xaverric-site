@@ -1,21 +1,11 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
-import { call, mockUpstream } from "./helpers.js";
-
-afterEach(() => vi.restoreAllMocks());
+import { describe, expect, it } from "vitest";
+import { call } from "./helpers.js";
 
 describe("hosts", () => {
   it("redirects www to the apex with path and query", async () => {
     const response = await call("/work/?ref=card", { origin: "https://www.xaverric.cz" });
     expect(response.status).toBe(301);
     expect(response.headers.get("location")).toBe("https://xaverric.cz/work/?ref=card");
-  });
-
-  it("redirects www API calls too", async () => {
-    const spy = mockUpstream();
-    const response = await call("/api/live", { origin: "http://www.xaverric.cz" });
-    expect(response.status).toBe(301);
-    expect(response.headers.get("location")).toBe("https://xaverric.cz/api/live");
-    expect(spy).not.toHaveBeenCalled();
   });
 
   it("upgrades plain http on the apex", async () => {
@@ -42,18 +32,7 @@ describe("routes", () => {
     expect((await call("/no-such-page")).status).toBe(404);
   });
 
-  it("answers unknown API paths with a JSON 404", async () => {
-    for (const path of ["/api", "/api/", "/api/nope", "/api/live/extra"]) {
-      const response = await call(path);
-      expect(response.status).toBe(404);
-      expect(response.headers.get("content-type")).toContain("application/json");
-      expect(await response.json()).toEqual({ error: { code: "not_found", message: "Not found" } });
-    }
-  });
-
-  it("allows only GET and HEAD on /api/live", async () => {
-    const response = await call("/api/live", { method: "POST" });
-    expect(response.status).toBe(405);
-    expect(response.headers.get("allow")).toBe("GET, HEAD");
+  it("serves no API anymore", async () => {
+    for (const path of ["/api", "/api/live"]) expect((await call(path)).status).toBe(404);
   });
 });

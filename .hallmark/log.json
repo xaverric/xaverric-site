@@ -1,6 +1,18 @@
 [
   {
     "date": "2026-09-24",
+    "macrostructure": "Typographic Card",
+    "theme": "custom",
+    "theme_axes": "light / grotesk-sans / neutral",
+    "vibe": "name and two links, nothing else",
+    "genre": "modern-minimal",
+    "nav": "none",
+    "footer": "none",
+    "enrichment": "none",
+    "brief": "xaverric.cz minimal redesign: name, GitHub, LinkedIn"
+  },
+  {
+    "date": "2026-09-24",
     "macrostructure": "Marquee Hero",
     "theme": "custom",
     "theme_axes": "light / roman-serif / warm",
@@ -17,7 +29,11 @@
       "inkDark": "oklch(93% 0.014 80)",
       "accentDark": "oklch(68% 0.18 36)"
     },
-    "fonts": { "display": "Fraunces 290 (SOFT 100)", "body": "Fraunces 380 (text optical size)", "mono": "JetBrains Mono" },
+    "fonts": {
+      "display": "Fraunces 290 (SOFT 100)",
+      "body": "Fraunces 380 (text optical size)",
+      "mono": "JetBrains Mono"
+    },
     "brief": "xaverric.cz - personal site of Daniel Jílek with the leaderborder showcase, live GitHub and leaderborder numbers, connect band"
   }
 ]
