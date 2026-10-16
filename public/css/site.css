@@ -31,20 +31,90 @@ body {
 }
 
 .name {
+  display: flex;
+  align-items: baseline;
   margin: 0;
   font-size: var(--text-name);
   font-weight: 560;
   line-height: 0.95;
   letter-spacing: var(--tracking-name);
+}
+
+.name__text {
+  min-width: 0;
   overflow-wrap: anywhere;
-  animation: rise var(--dur-slow) var(--ease-out) both;
+}
+
+.name__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.mark {
+  position: relative;
+  flex: none;
+  width: var(--mark-size);
+  height: var(--mark-size);
+  margin-right: calc(var(--mark-size) * 0.42);
+  animation: show 1ms linear var(--t-handoff) both;
+}
+
+.mark__square {
+  position: absolute;
+  inset: 0;
+  border-radius: calc(var(--mark-size) * 7 / 32);
+  background: var(--color-ink);
+  transform-origin: 50% 64%;
+  animation: mark-grow 520ms var(--ease-spring) calc(var(--t-handoff) + 20ms) both;
+}
+
+.mark__bar {
+  position: absolute;
+  left: calc(var(--mark-size) * 9 / 32);
+  top: calc(var(--mark-size) * 19 / 32);
+  width: var(--bar-w);
+  height: var(--bar-h);
+  border-radius: calc(var(--bar-h) / 2);
+  background: var(--color-paper);
+  animation: bar-invert 180ms var(--ease-out) calc(var(--t-handoff) + 40ms) both;
+}
+
+.name__l {
+  animation: reveal 1ms linear var(--t) both;
+}
+
+.name__l::after,
+.name__l:first-child::before {
+  content: "";
+  display: inline-block;
+  width: var(--bar-w);
+  height: var(--bar-h);
+  margin-right: calc(-0.03em - var(--bar-w));
+  margin-left: 0.03em;
+  vertical-align: calc(-0.07em - var(--bar-h));
+  border-radius: calc(var(--bar-h) / 2);
+  background: currentColor;
+  opacity: 0;
+  visibility: visible;
+  animation: caret var(--dwell) steps(1, end) var(--t);
+}
+
+.name__l:first-child::before {
+  margin-left: 0;
+  margin-right: calc(-1 * var(--bar-w));
+  transform-origin: left center;
+  animation: caret-draw 150ms var(--ease-out) 40ms;
 }
 
 .links {
   display: flex;
   flex-wrap: wrap;
   gap: 0 var(--space-lg);
-  animation: rise var(--dur-slow) var(--ease-out) 120ms both;
+  animation: rise var(--dur-slow) var(--ease-out) 950ms both;
 }
 
 .link {
@@ -86,6 +156,126 @@ body {
   transform: translate(2px, -2px);
 }
 
+.name__l:nth-child(1) {
+  --t: 200ms;
+  --dwell: 70ms;
+}
+
+.name__l:nth-child(2) {
+  --t: 270ms;
+  --dwell: 55ms;
+}
+
+.name__l:nth-child(3) {
+  --t: 325ms;
+  --dwell: 60ms;
+}
+
+.name__l:nth-child(4) {
+  --t: 385ms;
+  --dwell: 45ms;
+}
+
+.name__l:nth-child(5) {
+  --t: 430ms;
+  --dwell: 55ms;
+}
+
+.name__l:nth-child(6) {
+  --t: 485ms;
+  --dwell: 105ms;
+}
+
+.name__l:nth-child(7) {
+  --t: 590ms;
+  --dwell: 75ms;
+}
+
+.name__l:nth-child(8) {
+  --t: 665ms;
+  --dwell: 70ms;
+}
+
+.name__l:nth-child(9) {
+  --t: 735ms;
+  --dwell: 50ms;
+}
+
+.name__l:nth-child(10) {
+  --t: 785ms;
+  --dwell: 45ms;
+}
+
+.name__l:nth-child(11) {
+  --t: 830ms;
+  --dwell: 65ms;
+}
+
+.name__l:nth-child(12) {
+  --t: 895ms;
+  --dwell: 255ms;
+}
+
+.name__l:last-child::after {
+  animation-name: caret-last;
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes reveal {
+  from {
+    visibility: hidden;
+  }
+}
+
+@keyframes caret {
+  from,
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes caret-last {
+  0%,
+  40%,
+  72%,
+  100% {
+    opacity: 1;
+  }
+
+  41%,
+  71% {
+    opacity: 0;
+  }
+}
+
+@keyframes caret-draw {
+  from {
+    opacity: 1;
+    transform: scaleX(0);
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes mark-grow {
+  from {
+    transform: scale(0.4375, 0.09375);
+  }
+}
+
+@keyframes bar-invert {
+  from {
+    background: var(--color-ink);
+  }
+}
+
 @keyframes rise {
   from {
     opacity: 0;
@@ -97,6 +287,15 @@ body {
   .name,
   .links {
     animation: fade 150ms linear both;
+  }
+
+  .mark,
+  .mark__square,
+  .mark__bar,
+  .name__l,
+  .name__l::after,
+  .name__l:first-child::before {
+    animation: none;
   }
 
   .link,

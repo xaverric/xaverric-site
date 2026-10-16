@@ -25,6 +25,11 @@
   --space-lg: 2rem;
   --space-gutter: clamp(1.25rem, 6vw, 6rem);
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: linear(0, 0.062, 0.2, 0.364, 0.523, 0.661, 0.773, 0.859, 0.92, 0.962, 0.989, 1.004, 1.012, 1.015, 1.015, 1.013, 1.011, 1.008, 1.006, 1.004, 1.003, 1.002, 1.001, 1, 1);
+  --mark-size: 0.73em;
+  --bar-w: calc(var(--mark-size) * 14 / 32);
+  --bar-h: calc(var(--mark-size) * 3 / 32);
+  --t-handoff: 1150ms;
   --dur-fast: 160ms;
   --dur-slow: 900ms;
 }
